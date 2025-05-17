@@ -1,0 +1,26 @@
+name: Dev Bot Jr AI Engine
+description: The Dev Bot Jr AI Engine Action
+author: ingydotnet
+
+inputs:
+  limit-access:
+    description: Limit access to the workflow triggerer only
+    required: false
+    default: false
+  timeout:
+    description: Timeout in minutes before automatically closing the session
+    required: false
+    default: 60
+
+runs:
+  using: composite
+  steps:
+  - name: Setup tmate session
+    uses: mxschmitt/action-tmate@v3
+    with:
+      limit-access-to-actor: ${{ inputs.limit-access }}
+      timeout-minutes: ${{ inputs.timeout }}
+
+branding:
+  icon: terminal
+  color: blue
